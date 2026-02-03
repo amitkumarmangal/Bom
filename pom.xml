@@ -17,6 +17,10 @@
 
     <name>Platform Dependency BOM</name>
     <description>Centralized dependency management for all platform services</description>
+    <modules>
+        <module>../product-service</module>
+        <module>../common</module>
+    </modules>
 
     <!-- ========================= -->
     <!-- Global Properties        -->
@@ -29,6 +33,7 @@
         <jwt.version>0.11.5</jwt.version>
         <logback.version>1.5.24</logback.version>
         <logback.encoder.version>7.4</logback.encoder.version>
+        <postgres.version>42.7.7</postgres.version>
         <slf4j.version>2.0.17</slf4j.version>
         <junit.jupiter.version>5.14.2</junit.jupiter.version>
         <mockito.version>5.21.0</mockito.version>
@@ -108,6 +113,21 @@
                 <version>${jwt.version}</version>
             </dependency>
             <dependency>
+                <groupId>io.github.openfeign</groupId>
+                <artifactId>feign-micrometer</artifactId>
+                <version>${feign.micrometer.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgres.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>net.logstash.logback</groupId>
+                <artifactId>logstash-logback-encoder</artifactId>
+                <version>${logback.encoder.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j.version}</version>
@@ -124,29 +144,8 @@
                 <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
-            <dependency>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>extra-enforcer-rules</artifactId>
-                <version>${codehaus.mojo.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.github.openfeign</groupId>
-                <artifactId>feign-micrometer</artifactId>
-                <version>${feign.micrometer.version}</version>
-            </dependency>
         </dependencies>
     </dependencyManagement>
-    <dependencies>
-        <dependency>
-            <groupId>net.logstash.logback</groupId>
-            <artifactId>logstash-logback-encoder</artifactId>
-            <version>${logback.encoder.version}</version>
-        </dependency>
-        <dependency>
-             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-logging</artifactId>
-        </dependency>
-    </dependencies>
     <!-- ========================= -->
     <!-- Build Plugin Management  -->
     <!-- ========================= -->
