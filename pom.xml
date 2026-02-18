@@ -17,10 +17,6 @@
 
     <name>Platform Dependency BOM</name>
     <description>Centralized dependency management for all platform services</description>
-    <modules>
-        <module>../product-service</module>
-        <module>../common</module>
-    </modules>
 
     <!-- ========================= -->
     <!-- Global Properties        -->
@@ -31,9 +27,12 @@
         <spring.cloud.version>4.3.1</spring.cloud.version>
         <feign.micrometer.version>13.6</feign.micrometer.version>
         <jwt.version>0.11.5</jwt.version>
+        <flyway.version>11.12.0</flyway.version>
+        <liquibase.version>4.33.0</liquibase.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
         <logback.version>1.5.24</logback.version>
         <logback.encoder.version>7.4</logback.encoder.version>
-        <postgres.version>42.7.7</postgres.version>
+        <postgres.version>42.5.5</postgres.version>
         <slf4j.version>2.0.17</slf4j.version>
         <junit.jupiter.version>5.14.2</junit.jupiter.version>
         <mockito.version>5.21.0</mockito.version>
@@ -118,6 +117,21 @@
                 <version>${feign.micrometer.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-core</artifactId>
+                <version>${flyway.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-core</artifactId>
+                <version>${liquibase.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-database-postgresql</artifactId>
+                <version>${flyway.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>${postgres.version}</version>
@@ -126,6 +140,17 @@
                 <groupId>net.logstash.logback</groupId>
                 <artifactId>logstash-logback-encoder</artifactId>
                 <version>${logback.encoder.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
@@ -174,4 +199,14 @@
             </plugin>
         </plugins>
     </build>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <url>http://localhost:8081/repository/maven-snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus</id>
+            <url>http://localhost:8081/repository/maven-releases</url>
+        </repository>
+    </distributionManagement>
 </project>
